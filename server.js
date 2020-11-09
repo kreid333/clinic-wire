@@ -1,6 +1,7 @@
 // DEFINING VARIABLES
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 
 const app = express();
 
@@ -12,7 +13,7 @@ app.use(express.json());
 app.use(express.static("client/build"));
 
 // CONNECTING TO MONGOOSE
-mongoose.connect("mongodb://localhost/", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/clinicWireDB", {
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true,
@@ -36,6 +37,10 @@ app.get("/api/config", (req, res) => {
     message: "Successfully made API call!",
   });
 });
+
+// API ROUTES
+const apiRoutes = require("./controller/apiController");
+app.use(apiRoutes);
 
 // LISTENING ON PORT
 app.listen(PORT, () => {
