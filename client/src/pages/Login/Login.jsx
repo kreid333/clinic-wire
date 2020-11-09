@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
@@ -19,7 +20,13 @@ const Login = () => {
           <br />
           <input type="text" name="password" id="password" />
           <br />
-          <button className="btn button mt-3">Login</button>
+          <Link to="/dashboard">
+            <button className="btn button mt-3">Login</button>
+          </Link>
+          <br />
+          <Link to="/">
+            <button className="btn button mt-3">Back</button>
+          </Link>
         </form>
       </div>
     </div>
