@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -12,14 +13,18 @@ const HomePage = () => {
       <div className="row">
         <div className="col-sm-12 bg-image mt-3 text-center">
           <div class="text-center main-buttons">
-            <button class="btn" id="loginBtn">
-              Login
-            </button>
+            <Link to="/login">
+              <button class="btn" id="loginBtn">
+                Login
+              </button>
+            </Link>
             <br />
             <br />
-            <button class="btn" id="signUpBtn">
-              Sign Up
-            </button>
+            <Link to="/signup">
+              <button class="btn" id="signUpBtn">
+                Sign Up
+              </button>
+            </Link>
           </div>
         </div>
       </div>

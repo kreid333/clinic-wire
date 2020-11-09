@@ -9,6 +9,7 @@ h2 {
   background-size: cover;
   background-position: center;
   height: 350px;
+  border: 2px solid black;
 }
 
 .btn:hover {
@@ -25,5 +26,5 @@ h2 {
 }
 
 .about {
-  border: 2px solid rgb(66, 184, 144);
+  border: 2px solid black;
 }
