@@ -1,0 +1,29 @@
+h1,
+h2 {
+  color: rgb(66, 184, 144);
+}
+
+.bg-image {
+  background-image: url("./images/pexels-karolina-grabowska-4021775.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 350px;
+}
+
+.btn:hover {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(66, 184, 144);
+}
+
+.main-buttons {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+}
+
+.about {
+  border: 2px solid rgb(66, 184, 144);
+}
