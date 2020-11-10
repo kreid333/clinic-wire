@@ -9,7 +9,7 @@ const SignUp = () => {
     const [emailAddress, setEmailAddress] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = (gender, fullName, emailAddress, password) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         axios
           .post("/api/users", { gender, fullName, emailAddress, password })
@@ -31,7 +31,7 @@ const SignUp = () => {
         <div className="row">
             <div className="col-sm-12 mt-3 text-center">
                 <form onSubmit={(e) => {
-                    handleSubmit(e, gender, fullName, emailAddress, password);
+                    handleSubmit();
                 }}>
                     <label for="userRole">
                         Who are you?
