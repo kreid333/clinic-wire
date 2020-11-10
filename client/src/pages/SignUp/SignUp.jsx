@@ -31,9 +31,7 @@ const SignUp = () => {
         </div>
         <div className="row">
             <div className="col-sm-12 mt-3 text-center">
-                <form onSubmit={(e) => {
-                    handleSubmit();
-                }}>
+                <form onSubmit={handleSubmit}>
                     <label for="userRole">
                         Who are you?
                     </label>
