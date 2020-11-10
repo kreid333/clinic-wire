@@ -51,6 +51,7 @@ const SignUp = () => {
                         id="genderFormControl" 
                         value={gender}
                         onChange={(e) => setGender(e.target.value)}>
+                        <option>Select One</option>
                         <option>Male</option>
                         <option>Female</option>
                         <option>Other</option>
