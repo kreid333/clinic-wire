@@ -8,21 +8,31 @@ const ScheduleAppointment = () => {
       <h1 className="text-center mt-3">Schedule Appointment</h1>
       <div className="text-center">
         <form>
-          <label htmlFor="doctorName" className="mt-3">
-            Which Doctor are you seeing?
-          </label>
-          <br />
-          <input type="text" name="doctorName" id="doctorName" />
-          <br />
-
-
-
-          <label htmlFor="date" className="mt-3">
-            Which date would you like to be scheduled for?
-          </label>
-          <br />
-          <input type="text" name="date" id="date" />
-          <br />
+        <label htmlFor="" className="d-block">
+              Which doctor are you seeing?
+            </label>
+            <select name="" id="">
+                <option value="">Dr. Abraham</option>
+                <option value="">Dr. Stenson</option>
+                <option value="">Dr. Phillips</option>
+            </select>
+            <br />
+            <label htmlFor="" className="d-block">
+              What date would you like to schedule for?
+            </label>
+            <input
+              type="date"
+              min="2020-11-10"
+              max="2020-11-13"
+              className="mb-2"
+            />
+            <br />
+            <label htmlFor="" className="d-block">
+              What time would you like to schedule for?
+            </label>
+            <input type="time" min="9:00" max="17:00" className="mb-2" />
+            <br />
+            <small className="">Office hours are 9AM to 5PM</small>
 
 
           <label htmlFor="phoneNumber" className="mt-3">
