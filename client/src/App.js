@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import HomePage from "./pages/HomePage/HomePage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -9,18 +9,17 @@ import Dashboard from "./pages/Dashboard/PatientDashboard";
 import ScheduleAppointment from "./pages/ScheduleAppointment/ScheduleAppointment"
 import DisclaimerPage from "./pages/Disclaimer/Disclaimer";
 import MyAppointments from "./pages/MyAppointments/MyAppointments"
+import AuthContext from "./context/AuthContext";
 
 function App() {
-  useEffect(() => {
-    axios
-      .get("/api/config")
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((err) => {
-        console.log(`Axios GET request error: ${err}`);
-      });
-  });
+  // const [token, setToken] = useState("");
+  // useEffect(() => {
+  //   const localJwt = localStorage.getItem("jwt");
+  //   if (localJwt) {
+  //     setToken(localJwt);
+  //   }
+  // }, []);
+  // console.log(token)
   return (
     <Router>
       <Switch>
@@ -28,11 +27,9 @@ function App() {
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/schedule" component={ScheduleAppointment} />
-        <Route exact path="/Disclaimer" component={DisclaimerPage} />
-        <Route exact path="/MyAppointments" component={MyAppointments} />
-        <Route path="/" component={HomePage} />
-        
-       
+        <Route exact path="/disclaimer" component={DisclaimerPage} />
+        <Route exact path="/myappointments" component={MyAppointments} />
+        <Route path="/" component={HomePage} />       
       </Switch>
     </Router>
   );

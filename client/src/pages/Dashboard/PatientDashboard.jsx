@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../../context/AuthContext";
+
 const Dashboard = () => {
+  const jwt = require("jsonwebtoken");
+  // const { token } = useContext(AuthContext);
+  // console.log(token);
+  const token = localStorage.getItem("jwt");
+  const decoded = jwt.decode(token, { complete: true });
   return (
     <div className="container">
       <div className="row">
@@ -12,7 +19,7 @@ const Dashboard = () => {
         <div className="col-sm-12">
           <div className="card">
             <div className="card-body">
-              <h2 className="text-center">Welcome, User!</h2>
+              <h2 className="text-center">Welcome, {decoded.payload.fullName}!</h2>
               <div className="card">
                 <div className="card-body text-center">
                   <label htmlFor="" className="d-block">
@@ -23,7 +30,8 @@ const Dashboard = () => {
                     name=""
                     id=""
                     className="mb-2"
-                    value="User"
+                    value={decoded.payload.fullName}
+                    disabled
                   />
                   <br />
                   <label htmlFor="" className="d-block">
@@ -34,7 +42,8 @@ const Dashboard = () => {
                     name=""
                     id=""
                     className="mb-2"
-                    value="32"
+                    value={decoded.payload.age}
+                    disabled
                   />
                   <br />
                   <label htmlFor="" className="d-block">
@@ -45,11 +54,12 @@ const Dashboard = () => {
                     name=""
                     id=""
                     className="mb-2"
-                    value="Male"
+                    value={decoded.payload.gender}
+                    disabled
                   />
                 </div>
               </div>
-              <br/>
+              <br />
               <div className="text-center">
                 <Link to="/schedule">
                   <button class="btn" id="ScheduleBtn">
