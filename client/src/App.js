@@ -8,6 +8,7 @@ import "./App.css";
 import Dashboard from "./pages/Dashboard/PatientDashboard";
 import ScheduleAppointment from "./pages/ScheduleAppointment/ScheduleAppointment"
 import DisclaimerPage from "./pages/Disclaimer/Disclaimer";
+import MyAppointments from "./pages/MyAppointments/MyAppointments"
 
 function App() {
   useEffect(() => {
@@ -28,7 +29,9 @@ function App() {
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/schedule" component={ScheduleAppointment} />
         <Route exact path="/Disclaimer" component={DisclaimerPage} />
+        <Route exact path="/MyAppointments" component={MyAppointments} />
         <Route path="/" component={HomePage} />
+        
        
       </Switch>
     </Router>
