@@ -5,15 +5,15 @@ import "./MyAppointments.css";
 
 const MyAppointments = () => {
 
-    const [gender, setGender] = useState("");
-    const [fullName, setFullName] = useState("");
-    const [emailAddress, setEmailAddress] = useState("");
-    const [password, setPassword] = useState("");
+    const [appointmentNameFormControl1, setappointmentNameFormControl1] = useState("");
+    const [appointmentNameFormControl2, setappointmentNameFormControl2] = useState("");
+    const [appointmentNameFormControl3, setappointmentNameFormControl3] = useState("");
+   
 
     const handleSubmit = (e) => {
         e.preventDefault();
         axios
-          .post("/api/users", { gender, fullName, emailAddress, password })
+          .post("/api/users", { appointmentNameFormControl1, appointmentNameFormControl2, appointmentNameFormControl3})
           .then((response) => {
             console.log(response.data);
           })
@@ -36,29 +36,59 @@ const MyAppointments = () => {
                     
                     </label>
                     <br />
-                    <select id="appointmentNameFormControl">
+                    <select id="appointmentNameFormControl1">
                         <option>Dr. Abraham</option>
                         <option>Dr. Stenson</option>
                         <option>Dr. Phillips</option>
                     </select>
+                    <select 
+                        id="genderFormControl1" 
+                        value={appointmentNameFormControl1}
+                        onChange={(e) => setappointmentNameFormControl1(e.target.value)}>
+                        <option>Select One</option>
+                        <option>Dr.Abraham</option>
+                        <option>Dr. Stenson</option>
+                        <option>Dr.Phillips</option>
+                    </select>
+                    <button type="button" class="btn btn-danger">Delete</button>
                     <br />
 
                     
                     <br />
-                    <select id="appointmentNameFormControl">
+                    <select id="appointmentNameFormControl2">
                         <option>Dr. Abraham</option>
                         <option>Dr. Stenson</option>
                         <option>Dr. Phillips</option>
                     </select>
+                    <select 
+                        id="genderFormControl2" 
+                        value={appointmentNameFormControl2}
+                        onChange={(e) => setappointmentNameFormControl2(e.target.value)}>
+                        <option>Select One</option>
+                        <option>Dr.Abraham</option>
+                        <option>Dr. Stenson</option>
+                        <option>Dr.Phillips</option>
+                    </select>
+                    <button type="button" class="btn btn-danger">Delete</button>
                     <br />
 
                    
                     <br />
-                    <select id="appointmentNameFormControl">
+                    <select id="appointmentNameFormControl3">
                         <option>Dr. Abraham</option>
                         <option>Dr. Stenson</option>
                         <option>Dr. Phillips</option>
                     </select>
+                    <select 
+                        id="genderFormControl3" 
+                        value={appointmentNameFormControl3}
+                        onChange={(e) => setappointmentNameFormControl3(e.target.value)}>
+                        <option>Select One</option>
+                        <option>Dr.Abraham</option>
+                        <option>Dr. Stenson</option>
+                        <option>Dr.Phillips</option>
+                    </select>
+                    <button type="button" class="btn btn-danger">Delete</button>
                     <br />
                     
                     
