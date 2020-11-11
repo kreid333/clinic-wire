@@ -1,3 +1,6 @@
+// RECOGNIZING .env FILE
+require("dotenv").config();
+
 // DEFINING VARIABLES
 const express = require("express");
 const mongoose = require("mongoose");
