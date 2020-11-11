@@ -52,6 +52,18 @@ router.post("/api/users", (req, res) => {
   }
 });
 
+router.post("/api/appointments", (req, res) => {
+  db.Appointments.create(req.body)
+    .then((response) => {
+      res.json(response);
+    })
+    .catch((err) => {
+      if (err) {
+        throw err;
+      }
+    });
+});
+
 router.get("/api/users", (req, res) => {
   db.User.find()
     .then((response) => {
