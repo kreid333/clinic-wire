@@ -6,6 +6,8 @@ import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import "./App.css";
 import Dashboard from "./pages/Dashboard/PatientDashboard";
+import ScheduleAppointment from "./pages/ScheduleAppointment/ScheduleAppointment"
+import DisclaimerPage from "./pages/Disclaimer/Disclaimer";
 
 function App() {
   useEffect(() => {
@@ -24,7 +26,10 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/schedule" component={ScheduleAppointment} />
+        <Route exact path="/Disclaimer" component={DisclaimerPage} />
         <Route path="/" component={HomePage} />
+       
       </Switch>
     </Router>
   );
