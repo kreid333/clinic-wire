@@ -16,15 +16,18 @@ const MyAppointments = () => {
           <select>
             <option>Dr. Abraham</option>
           </select>
-          <br/>
+          <button className="btn ml-2" id="delete">DELETE</button>
+          <br />
           <select className="mt-3">
             <option>Dr. Stenson</option>
           </select>
-          <br/>
+          <button className="btn ml-2" id="delete">DELETE</button>
+          <br />
           <select className="mt-3">
             <option>Dr. Phillips</option>
           </select>
-          <br/>
+          <button className="btn ml-2" id="delete">DELETE</button>
+          <br />
           <Link to="/dashboard">
             <button className="btn button mt-3">Back</button>
           </Link>
