@@ -6,8 +6,9 @@ import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import "./App.css";
 import Dashboard from "./pages/Dashboard/PatientDashboard";
-import ScheduleAppointment from "./pages/ScheduleAppointment/ScheduleAppointment";
-import MyAppointments from "./pages/MyAppointments/MyAppointments";
+import ScheduleAppointment from "./pages/ScheduleAppointment/ScheduleAppointment"
+import DisclaimerPage from "./pages/Disclaimer/Disclaimer";
+import MyAppointments from "./pages/MyAppointments/MyAppointments"
 import AuthContext from "./context/AuthContext";
 
 function App() {
@@ -21,16 +22,15 @@ function App() {
   // console.log(token)
   return (
     <Router>
-      {/* <AuthContext.Provider value={{ token, setToken }}> */}
-        <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/schedule" component={ScheduleAppointment} />
-          <Route exact path="/myappointments" component={MyAppointments} />
-          <Route path="/" component={HomePage} />
-        </Switch>
-      {/* </AuthContext.Provider> */}
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/schedule" component={ScheduleAppointment} />
+        <Route exact path="/disclaimer" component={DisclaimerPage} />
+        <Route exact path="/myappointments" component={MyAppointments} />
+        <Route path="/" component={HomePage} />       
+      </Switch>
     </Router>
   );
 }
