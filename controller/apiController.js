@@ -101,6 +101,12 @@ router.post("/api/login", (req, res) => {
               message: "Failed to sign in.",
             });
           });
+      } else {
+        res.status(401).json({
+          error: true,
+          data: null,
+          message: "Failed to sign in.",
+        });
       }
     })
     .catch((err) => {

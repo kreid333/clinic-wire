@@ -18,6 +18,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err);
+        alert("Unable to sign in. Make sure that the username and password are correct.")
       });
   };
   return (
