@@ -32,16 +32,18 @@ const MyAppointments = () => {
           <div className="card">
             <div className="card-body">
               {userApts.map((appointment) => (
-                  <div className="card mb-3">
-                    <div className="card-body text-center">
-                      <h2>
-                        {appointment.dateScheduled} with{" "}
-                        {appointment.doctorName}
-                      </h2>
-                      <h5>Time scheduled: {appointment.timeScheduled}</h5>
-                      <h5>Notes for doctor: {appointment.doctorNotes}</h5>
-                    </div>
+                <div className="card mb-3">
+                  <div className="card-body text-center">
+                    <h2>
+                      {appointment.dateScheduled} with {appointment.doctorName}
+                    </h2>
+                    <h5>Time scheduled: {appointment.timeScheduled}</h5>
+                    <h5>Notes for doctor: {appointment.doctorNotes}</h5>
+                    <button className="btn mt-3">
+                      Add to Google Calendar
+                    </button>
                   </div>
+                </div>
               ))}
             </div>
           </div>
