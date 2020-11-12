@@ -4,6 +4,67 @@ import axios from "axios";
 import "./MyAppointments.css";
 
 const MyAppointments = () => {
+  var gapi = window.gapi;
+  /* 
+    Update with your own Client Id and Api key 
+  */
+  var CLIENT_ID =
+    "380489880878-r11s6d8u991p2428a61jlabi2i47o0ej.apps.googleusercontent.com";
+  var API_KEY = "AIzaSyCIxIKqIwaFfqDliqXqEwqAd-nkwUzoFx8";
+  var DISCOVERY_DOCS = [
+    "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
+  ];
+  var SCOPES = "https://www.googleapis.com/auth/calendar.events";
+
+  const handleClick = (doctor, date, time) => {
+    gapi.load("client:auth2", () => {
+      console.log("loaded client");
+
+      gapi.client.init({
+        apiKey: API_KEY,
+        clientId: CLIENT_ID,
+        discoveryDocs: DISCOVERY_DOCS,
+        scope: SCOPES,
+      });
+
+      gapi.client.load("calendar", "v3", () => console.log("bam!"));
+
+      gapi.auth2
+        .getAuthInstance()
+        .signIn()
+        .then(() => {
+          var event = {
+            summary: "Appointment with " + doctor,
+            location: "800 Howard St., New York City, NY 10001",
+            start: {
+              dateTime: date + "T" + time + ":00-05:00",
+              timeZone: "America/New_York",
+            },
+            end: {
+              dateTime: date + "T" + (parseInt(time) + 1 + ":00") + ":00-05:00",
+              timeZone: "America/New_York",
+            },
+            reminders: {
+              useDefault: false,
+              overrides: [
+                { method: "email", minutes: 24 * 60 },
+                { method: "popup", minutes: 10 },
+              ],
+            },
+          };
+
+          var request = gapi.client.calendar.events.insert({
+            calendarId: "primary",
+            resource: event,
+          });
+
+          request.execute((event) => {
+            console.log(event);
+            window.open(event.htmlLink);
+          });
+        });
+    });
+  };
   const [userApts, setUserApts] = useState([]);
   const jwt = require("jsonwebtoken");
 
@@ -39,7 +100,16 @@ const MyAppointments = () => {
                     </h2>
                     <h5>Time scheduled: {appointment.timeScheduled}</h5>
                     <h5>Notes for doctor: {appointment.doctorNotes}</h5>
-                    <button className="btn mt-3">
+                    <button
+                      className="btn mt-3"
+                      onClick={() => {
+                        handleClick(
+                          appointment.doctorName,
+                          appointment.dateScheduled,
+                          appointment.timeScheduled
+                        );
+                      }}
+                    >
                       Add to Google Calendar
                     </button>
                   </div>
