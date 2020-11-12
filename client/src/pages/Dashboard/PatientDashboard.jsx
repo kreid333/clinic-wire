@@ -8,6 +8,7 @@ const Dashboard = () => {
   // console.log(token);
   const token = localStorage.getItem("jwt");
   const decoded = jwt.decode(token, { complete: true });
+  console.log(decoded);
   return (
     <div className="container">
       <div className="row">
@@ -62,13 +63,13 @@ const Dashboard = () => {
               <br />
               <div className="text-center">
                 <Link to="/schedule">
-                  <button class="btn" id="ScheduleBtn">
+                  <button class="btn button" id="ScheduleBtn">
                     Schedule Appointment
                   </button>
                 </Link>
                 <br />
                 <Link to="/myappointments">
-                  <button class="btn mt-3" id="AppointmentsBtn">
+                  <button class="btn button mt-3" id="AppointmentsBtn">
                     Apppointments
                   </button>
                 </Link>

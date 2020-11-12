@@ -1,19 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ScheduleAppointment.css";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ScheduleAppointment = () => {
+  const jwt = require("jsonwebtoken");
+
+  const token = localStorage.getItem("jwt");
+  const decoded = jwt.decode(token, { complete: true });
   const history = useHistory();
   const [doctorName, setDoctorName] = useState("");
   const [dateScheduled, setDateScheduled] = useState("");
   const [timeScheduled, setTimeScheduled] = useState("");
   const [doctorNotes, setDoctorNotes] = useState("");
+  const [patient, setPatient] = useState("");
+
+  useEffect(() => {
+    setPatient(decoded.payload._id);
+  }, [decoded.payload._id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post("/api/appointments", {
+        patient,
         doctorName,
         dateScheduled,
         timeScheduled,
@@ -42,12 +53,17 @@ const ScheduleAppointment = () => {
               Which doctor are you seeing?
             </label>
             <br />
-            <input
-              type="text"
+            <select
+              name={doctorName}
               id="doctorName"
-              value={doctorName}
               onChange={(e) => setDoctorName(e.target.value)}
-            />
+              required
+            >
+              <option value="">Select One</option>
+              <option>Dr. Stenson</option>
+              <option>Dr. Abraham</option>
+              <option>Dr. Phillips</option>
+            </select>
             <br />
 
             <label for="dateScheduled" className="mt-3">
@@ -59,6 +75,7 @@ const ScheduleAppointment = () => {
               id="dateScheduled"
               value={dateScheduled}
               onChange={(e) => setDateScheduled(e.target.value)}
+              required
             />
             <br />
 
@@ -71,6 +88,7 @@ const ScheduleAppointment = () => {
               id="timeScheduled"
               value={timeScheduled}
               onChange={(e) => setTimeScheduled(e.target.value)}
+              required
             />
             <br />
 
@@ -83,11 +101,16 @@ const ScheduleAppointment = () => {
               id="doctorNotesFormControl"
               value={doctorNotes}
               onChange={(e) => setDoctorNotes(e.target.value)}
+              required
             />
             <br />
             <button type="submit" className="btn button mt-3">
               Submit
             </button>
+            <br />
+            <Link to="/dashboard">
+              <button className="btn button mt-3">Back</button>
+            </Link>
           </form>
         </div>
       </div>
