@@ -60,18 +60,6 @@ const ScheduleAppointment = () => {
                         />
                     <br />
 
-                    <label for="dateScheduled" className="mt-3">
-                        What date would you like to schedule for?
-                    </label>
-                    <br />
-                    <input 
-                        type="text" 
-                        id="dateScheduledFormControl"
-                        value={dateScheduled}
-                        onChange={(e) => setdateScheduled(e.target.value)}
-                        />
-                    <br />
-
                     <label for="phoneNumber" className="mt-3">
                         What is your Phone Number?
                     </label>
