@@ -47,7 +47,7 @@ const SignUp = () => {
             </label>
             <br />
             <select
-              id="genderFormControl"
+              id="gender"
               value={gender}
               onChange={(e) => setGender(e.target.value)}
               required
@@ -64,7 +64,7 @@ const SignUp = () => {
             <br />
             <input
               type="text"
-              id="fullNameFormControl"
+              id="fullName"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               required
@@ -76,14 +76,14 @@ const SignUp = () => {
             <br />
             <input
               type="email"
-              id="emailFormControl"
+              id="emailAddress"
               placeholder="user@email.com"
               value={emailAddress}
               onChange={(e) => setEmailAddress(e.target.value)}
               required
             />
             <br />
-            <label for="emailAddress" className="mt-3">
+            <label for="age" className="mt-3">
               Age
             </label>
             <br />
@@ -91,7 +91,7 @@ const SignUp = () => {
               type="number"
               min="0"
               max="100"
-              id="formControl"
+              id="age"
               value={age}
               onChange={(e) => setAge(e.target.value)}
               required
@@ -103,7 +103,7 @@ const SignUp = () => {
             <br />
             <input
               type="password"
-              id="passwordFormControl"
+              id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

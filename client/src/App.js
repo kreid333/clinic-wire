@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 import HomePage from "./pages/HomePage/HomePage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
@@ -9,7 +7,6 @@ import Dashboard from "./pages/Dashboard/PatientDashboard";
 import ScheduleAppointment from "./pages/ScheduleAppointment/ScheduleAppointment"
 import DisclaimerPage from "./pages/Disclaimer/Disclaimer";
 import MyAppointments from "./pages/MyAppointments/MyAppointments"
-import AuthContext from "./context/AuthContext";
 
 function App() {
   // const [token, setToken] = useState("");
