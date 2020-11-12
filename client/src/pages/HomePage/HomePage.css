@@ -4,7 +4,6 @@
   background-size: cover;
   background-position: center;
   height: 350px;
-  border: 2px solid black;
 }
 
 .main-buttons {
@@ -18,8 +17,4 @@
   cursor: pointer;
   color: white;
   background-color: rgb(66, 184, 144);
-}
-
-.about {
-  border: 2px solid black;
 }

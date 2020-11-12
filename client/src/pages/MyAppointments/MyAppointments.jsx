@@ -1,9 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./MyAppointments.css";
 
 const MyAppointments = () => {
+  const [userApts, setUserApts] = useState([]);
+  const jwt = require("jsonwebtoken");
+
+  const token = localStorage.getItem("jwt");
+  const decoded = jwt.decode(token, { complete: true });
+  useEffect(() => {
+    axios
+      .get(`/api/appointments/${decoded.payload._id}`)
+      .then((response) => {
+        setUserApts(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  console.log(userApts);
   return (
     <div className="container">
       <div className="row">
@@ -13,23 +29,24 @@ const MyAppointments = () => {
       </div>
       <div className="row">
         <div className="col-sm-12 mt-3 text-center">
-          <select>
-            <option>Dr. Abraham</option>
-          </select>
-          <button className="btn ml-2" id="delete">DELETE</button>
-          <br />
-          <select className="mt-3">
-            <option>Dr. Stenson</option>
-          </select>
-          <button className="btn ml-2" id="delete">DELETE</button>
-          <br />
-          <select className="mt-3">
-            <option>Dr. Phillips</option>
-          </select>
-          <button className="btn ml-2" id="delete">DELETE</button>
-          <br />
+          <div className="card">
+            <div className="card-body">
+              {userApts.map((appointment) => (
+                  <div className="card mb-3">
+                    <div className="card-body text-center">
+                      <h2>
+                        {appointment.dateScheduled} with{" "}
+                        {appointment.doctorName}
+                      </h2>
+                      <h5>Time scheduled: {appointment.timeScheduled}</h5>
+                      <h5>Notes for doctor: {appointment.doctorNotes}</h5>
+                    </div>
+                  </div>
+              ))}
+            </div>
+          </div>
           <Link to="/dashboard">
-            <button className="btn button mt-3">Back</button>
+            <button className="btn button m-3">Back</button>
           </Link>
         </div>
       </div>
