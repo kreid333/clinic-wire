@@ -1,8 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import "./HomePage.css";
 
 const HomePage = () => {
+  const history = useHistory();
+  useEffect(() => {
+    if (localStorage.getItem("jwt")) {
+      history.push("/dashboard");
+    }
+  }, [history]);
   return (
     <div className="container">
       <div className="row">
@@ -34,9 +40,11 @@ const HomePage = () => {
             <div className="card-body">
               <h2 className="text-center">About Us</h2>
               <p className="text-center">
-              Welcome to ClinicWire. ClinicWire is a user-friendly medical portal that allows users to schedule appointments directly with their doctor. 
-              We make it easy to find the dates and times that work best for both you and your doctor. 
-              You can also add your appointments to your Google Calendar directly from ClinicWire.
+                Welcome to ClinicWire. ClinicWire is a user-friendly medical
+                portal that allows users to schedule appointments directly with
+                their doctor. We make it easy to find the dates and times that
+                work best for both you and your doctor. You can also add your
+                appointments to your Google Calendar directly from ClinicWire.
               </p>
             </div>
           </div>

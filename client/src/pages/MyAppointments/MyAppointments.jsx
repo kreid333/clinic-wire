@@ -5,9 +5,6 @@ import "./MyAppointments.css";
 
 const MyAppointments = () => {
   var gapi = window.gapi;
-  /* 
-    Update with your own Client Id and Api key 
-  */
   var CLIENT_ID =
     "380489880878-r11s6d8u991p2428a61jlabi2i47o0ej.apps.googleusercontent.com";
   var API_KEY = "AIzaSyCIxIKqIwaFfqDliqXqEwqAd-nkwUzoFx8";
@@ -70,58 +67,74 @@ const MyAppointments = () => {
 
   const token = localStorage.getItem("jwt");
   const decoded = jwt.decode(token, { complete: true });
+
   useEffect(() => {
-    axios
-      .get(`/api/appointments/${decoded.payload._id}`)
-      .then((response) => {
-        setUserApts(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-  console.log(userApts);
+    if (decoded) {
+      axios
+        .get(`/api/appointments/${decoded.payload._id}`)
+        .then((response) => {
+          setUserApts(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [decoded]);
+
   return (
     <div className="container">
-      <div className="row">
-        <div className="col-sm-12">
-          <h1 className="text-center mt-3">My Appointments</h1>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-sm-12 mt-3 text-center">
-          <div className="card">
-            <div className="card-body">
-              {userApts.map((appointment) => (
-                <div className="card mb-3">
-                  <div className="card-body text-center">
-                    <h2>
-                      {appointment.dateScheduled} with {appointment.doctorName}
-                    </h2>
-                    <h5>Time scheduled: {appointment.timeScheduled}</h5>
-                    <h5>Notes for doctor: {appointment.doctorNotes}</h5>
-                    <button
-                      className="btn mt-3"
-                      onClick={() => {
-                        handleClick(
-                          appointment.doctorName,
-                          appointment.dateScheduled,
-                          appointment.timeScheduled
-                        );
-                      }}
-                    >
-                      Add to Google Calendar
-                    </button>
-                  </div>
-                </div>
-              ))}
+      {token && decoded ? (
+        <>
+          <div className="row">
+            <div className="col-sm-12">
+              <h1 className="text-center mt-3">My Appointments</h1>
             </div>
           </div>
-          <Link to="/dashboard">
-            <button className="btn button m-3">Back</button>
+          <div className="row">
+            <div className="col-sm-12 mt-3 text-center">
+              <div className="card">
+                <div className="card-body">
+                  {userApts.length === 0 && <h2>No appointments scheduled yet!</h2>}
+                  {userApts.map((appointment) => (
+                    <div className="card mb-3">
+                      <div className="card-body text-center">
+                        <h2>
+                          {appointment.dateScheduled} with{" "}
+                          {appointment.doctorName}
+                        </h2>
+                        <h5>Time scheduled: {appointment.timeScheduled}</h5>
+                        <h5>Notes for doctor: {appointment.doctorNotes}</h5>
+                        <button
+                          className="btn mt-3"
+                          onClick={() => {
+                            handleClick(
+                              appointment.doctorName,
+                              appointment.dateScheduled,
+                              appointment.timeScheduled
+                            );
+                          }}
+                        >
+                          Add to Google Calendar
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <Link to="/dashboard">
+                <button className="btn button m-3">Back</button>
+              </Link>
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className="text-center col-sm-12">
+          <h1 className="mt-3">You do not have access to this page!</h1>
+          <Link to="/">
+            <button className="btn button mt-3">Go Home</button>
           </Link>
         </div>
-      </div>
+      )}
     </div>
   );
 };
