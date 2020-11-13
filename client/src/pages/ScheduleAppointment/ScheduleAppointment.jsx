@@ -15,11 +15,20 @@ const ScheduleAppointment = () => {
   const [timeScheduled, setTimeScheduled] = useState("");
   const [doctorNotes, setDoctorNotes] = useState("");
   const [patient, setPatient] = useState("");
+  const [doctors, setDoctors] = useState([]);
 
   useEffect(() => {
     if (decoded) {
       setPatient(decoded.payload._id);
     }
+    axios
+      .get(`/api/users/${decoded.payload._id}`)
+      .then((response) => {
+        setDoctors(response.data.clinic.doctors);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [decoded]);
 
   const handleSubmit = (e) => {
@@ -64,9 +73,9 @@ const ScheduleAppointment = () => {
                   required
                 >
                   <option value="">Select One</option>
-                  <option>Dr. Stenson</option>
-                  <option>Dr. Abraham</option>
-                  <option>Dr. Phillips</option>
+                  {doctors.map((doctor) => (
+                    <option value="">{doctor}</option>
+                  ))}
                 </select>
                 <br />
 

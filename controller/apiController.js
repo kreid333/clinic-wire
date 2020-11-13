@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 router.post("/api/users", (req, res) => {
-  const { gender, fullName, emailAddress, password, age } = req.body;
+  const { clinic, gender, fullName, emailAddress, password, age } = req.body;
   if (!emailAddress.trim() || !password.trim()) {
     res.status(400);
   } else {
@@ -13,6 +13,7 @@ router.post("/api/users", (req, res) => {
       .hash(password, 10)
       .then((hashedPassword) => {
         db.User.create({
+          clinic: clinic,
           gender: gender,
           fullName: fullName,
           age: age,
@@ -23,6 +24,7 @@ router.post("/api/users", (req, res) => {
             const token = jwt.sign(
               {
                 _id: newUser._id,
+                clinic: newUser.clinic,
                 gender: newUser.gender,
                 fullName: newUser.fullName,
                 emailAddress: newUser.emailAddress,
@@ -143,9 +145,41 @@ router.get("/api/appointments/:id", (req, res) => {
     });
 });
 
-router.get("/api/users", (req, res) => {
-  db.User.find()
-    .populate("appointments")
+router.post("/api/clinic/:id", (req, res) => {
+  db.Clinic.findOne({ _id: req.params.id })
+    .then((foundClinic) => {
+      if (foundClinic) {
+        res.json(foundClinic);
+      } else {
+        res.status(401).json({
+          error: true,
+          data: null,
+          message: "Failed to find clinic.",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(401).json({
+        error: err,
+        data: null,
+        message: "Failed to find clinic.",
+      });
+    });
+});
+
+router.post("/api/clinic", (req, res) => {
+  db.Clinic.create(req.body)
+    .then((response) => {
+      res.json(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+router.get("/api/users/:id", (req, res) => {
+  db.User.findById(req.params.id)
+    .populate("clinic")
     .then((response) => {
       res.json(response);
     })
