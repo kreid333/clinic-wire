@@ -4,19 +4,12 @@ import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import "./App.css";
 import Dashboard from "./pages/Dashboard/PatientDashboard";
-import ScheduleAppointment from "./pages/ScheduleAppointment/ScheduleAppointment"
+import ScheduleAppointment from "./pages/ScheduleAppointment/ScheduleAppointment";
 import DisclaimerPage from "./pages/Disclaimer/Disclaimer";
-import MyAppointments from "./pages/MyAppointments/MyAppointments"
+import MyAppointments from "./pages/MyAppointments/MyAppointments";
+
 
 function App() {
-  // const [token, setToken] = useState("");
-  // useEffect(() => {
-  //   const localJwt = localStorage.getItem("jwt");
-  //   if (localJwt) {
-  //     setToken(localJwt);
-  //   }
-  // }, []);
-  // console.log(token)
   return (
     <Router>
       <Switch>
@@ -26,7 +19,7 @@ function App() {
         <Route exact path="/schedule" component={ScheduleAppointment} />
         <Route exact path="/disclaimer" component={DisclaimerPage} />
         <Route exact path="/myappointments" component={MyAppointments} />
-        <Route path="/" component={HomePage} />       
+        <Route path="/" component={HomePage} />
       </Switch>
     </Router>
   );
