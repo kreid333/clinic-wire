@@ -47,6 +47,14 @@ const HomePage = () => {
                 appointments to your Google Calendar directly from ClinicWire.
               </p>
             </div>
+            <div class="card-footer">
+      <div class="nav-item">
+            <a class="nav-link" href="/Disclaimer">Disclaimer Link</a>
+          </div>
+
+     
+     
+    </div>
           </div>
         </div>
       </div>
