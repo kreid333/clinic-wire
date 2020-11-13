@@ -32,11 +32,13 @@ const DisclaimerPage = () => {
           <br />
           <br />
           <p>
-              <Link to="login">
-                  <button class="btn" id="returnBtn">
+             <div className="text-center">
+               <Link to="login">
+                  <button className="btn " id="returnBtn">
                       Login
                   </button>
               </Link>
+              </div>
           </p>
         </div>
       </div>
