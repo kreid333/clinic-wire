@@ -8,6 +8,7 @@ import ScheduleAppointment from "./pages/ScheduleAppointment/ScheduleAppointment
 import DisclaimerPage from "./pages/Disclaimer/Disclaimer";
 import MyAppointments from "./pages/MyAppointments/MyAppointments";
 
+
 function App() {
   return (
     <Router>
