@@ -7,8 +7,6 @@ import Dashboard from "./pages/Dashboard/PatientDashboard";
 import ScheduleAppointment from "./pages/ScheduleAppointment/ScheduleAppointment";
 import DisclaimerPage from "./pages/Disclaimer/Disclaimer";
 import MyAppointments from "./pages/MyAppointments/MyAppointments";
-import AuthContext from "./context/AuthContext";
-import { useState } from "react";
 
 function App() {
   return (
