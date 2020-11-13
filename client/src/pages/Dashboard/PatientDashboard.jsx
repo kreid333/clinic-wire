@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 const Dashboard = () => {
@@ -6,7 +7,18 @@ const Dashboard = () => {
   const jwt = require("jsonwebtoken");
   const token = localStorage.getItem("jwt");
   const decoded = jwt.decode(token, { complete: true });
+  const [clinicName, setClinicName] = useState("");
 
+  useEffect(() => {
+    axios
+      .get(`/api/users/${decoded.payload._id}`)
+      .then((response) => {
+        setClinicName(response.data.clinic.name);
+      })
+      .catch((err) => {
+        console.lof(err);
+      });
+  }, [decoded]);
   const handleLogout = () => {
     localStorage.removeItem("jwt");
     history.push("/");
@@ -17,11 +29,14 @@ const Dashboard = () => {
       {token && decoded ? (
         <>
           <div className="row">
-            <div className="col-sm-12">
+            <div className="col-sm-4"></div>
+            <div className="col-sm-4">
+              <h1 className="text-center mt-3">Dashboard</h1>
+            </div>
+            <div className="col-sm-4">
               <button className="btn float-right" onClick={handleLogout}>
                 Logout
               </button>
-              <h1 className="text-center mt-3">Dashboard</h1>
             </div>
           </div>
           <div className="row">
@@ -33,6 +48,17 @@ const Dashboard = () => {
                   </h2>
                   <div className="card">
                     <div className="card-body text-center">
+                      <label htmlFor="" className="d-block">
+                        Clinic
+                      </label>
+                      <input
+                        type="text"
+                        name=""
+                        id=""
+                        className="mb-2"
+                        value={clinicName}
+                        disabled
+                      />
                       <label htmlFor="" className="d-block">
                         Name
                       </label>

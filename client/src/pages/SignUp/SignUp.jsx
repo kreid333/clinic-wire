@@ -11,16 +11,27 @@ const SignUp = () => {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [age, setAge] = useState("");
+  const [clinic, setClinic] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/api/users", { gender, fullName, emailAddress, password, age })
-      .then((response) => {
-        localStorage.setItem("jwt", response.data.data);
-        history.push("/dashboard");
+      .post(`/api/clinic/${clinic}`)
+      .then((foundClinic) => {
+        console.log(foundClinic);
+        axios
+          .post("/api/users", { clinic, gender, fullName, emailAddress, password, age })
+          .then((response) => {
+            localStorage.setItem("jwt", response.data.data);
+            history.push("/dashboard");
+          })
+          .catch((err) => {
+            alert("Email address in use.");
+            console.log(err);
+          });
       })
       .catch((err) => {
+        alert("Invalid Clinic ID.");
         console.log(err);
       });
   };
@@ -35,12 +46,14 @@ const SignUp = () => {
       <div className="row">
         <div className="col-sm-12 mt-3 text-center">
           <form onSubmit={handleSubmit}>
-            <label for="userRole">Who are you?</label>
+            <label for="clinic">Clinic ID:</label>
             <br />
-            <select id="roleFormControl">
-              <option>Patient</option>
-              <option>Doctor</option>
-            </select>
+            <input
+              type="text"
+              id="clinic"
+              onChange={(e) => setClinic(e.target.value)}
+              required
+            />
             <br />
             <label for="gender" className="mt-3">
               Gender
