@@ -49,7 +49,7 @@ const HomePage = () => {
             </div>
             <div class="card-footer">
       <div class="nav-item">
-            <a class="nav-link" href="/Disclaimer">Disclaimer Link</a>
+      <Link to="/Disclaimer">Link to Disclaimer Page</Link>
           </div>
 
      
