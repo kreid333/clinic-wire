@@ -15,28 +15,34 @@ const DisclaimerPage = () => {
           <h2 className="text-center">Disclaimer</h2>
           <p className="text-center">
 
-
+            <ul>
+            <li>
             YOU MUST NEVER RELY ON ANY INFORMATION OBTAINED USING THIS APP FOR ANY DIAGNOSIS OR RECOMMENDATION FOR MEDICAL TREATMENT.
             YOU MUST NEVER RELY ON THE INFORMATION RECEIVED FROM THIS APP AS ALTERNATIVE
             TO MEDICAL ADVICE FROM YOUR PHYSICIAN OR OTHER PROFESSIONAL HEALTHCARE PROVIDER.
-
+            </li>
+            <li>
             YOU MUST NEVER DISREGARD PROFESSIONAL MEDICAL ADVICE OR DELAY SEEKING MEDICAL TREATMENT
             AS RESULT OF ANY INFORMATION YOU HAVE SEEN ON OR ACCESSED THROUGH THIS APP.
             IF YOU HAVE ANY SPECIFIC QUESTIONS ABOUT ANY MEDICAL MATTER YOU SHOULD CONSULT YOUR PHYSICIAN
             OR OTHER PROFESSIONAL HEALTHCARE PROVIDER. IF YOU THINK YOU MAY BE SUFFERING FROM ANY MEDICAL
             CONDITION YOU SHOULD SEEK IMMEDIATE MEDICAL ATTENTION.
-
+            </li>
+            <li>
             The information provided by this App is provided “as is” without any representations or warranties, express or implied. Clinic-wire makes no representations or warranties in relation to the medical or other information in this App.
-
+            </li>
+            </ul>
           </p>
           <br />
           <br />
           <p>
+          <div className="text-center">
               <Link to="login">
                   <button class="btn" id="returnBtn">
                       Login
                   </button>
               </Link>
+              </div>
           </p>
         </div>
       </div>

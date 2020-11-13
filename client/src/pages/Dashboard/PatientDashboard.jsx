@@ -100,4 +100,9 @@ const Dashboard = () => {
     </div>
   );
 };
+<div class="card-footer text-center">
+            <div class="nav-item">
+            <a class="nav-link" href="/Disclaimer">Disclaimer Link</a>
+          </div>
+        </div>
 export default Dashboard;
