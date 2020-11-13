@@ -1,17 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Dashboard = () => {
+  const history = useHistory();
   const jwt = require("jsonwebtoken");
   const token = localStorage.getItem("jwt");
   const decoded = jwt.decode(token, { complete: true });
-  
+
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    history.push("/");
+  };
+
   return (
     <div className="container">
       {token && decoded ? (
         <>
           <div className="row">
             <div className="col-sm-12">
+              <button className="btn float-right" onClick={handleLogout}>
+                Logout
+              </button>
               <h1 className="text-center mt-3">Dashboard</h1>
             </div>
           </div>
