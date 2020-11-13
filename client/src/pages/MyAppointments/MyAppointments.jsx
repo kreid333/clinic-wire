@@ -34,14 +34,21 @@ const MyAppointments = () => {
               {userApts.map((appointment) => (
                 <div className="card mb-3">
                   <div className="card-body text-center">
+                    <div className="card-body text-center">
+                      <button className="btn button m-3">Delete</button>
+                      <span><Link to="UpdatePatient"><button className="btn button m-3">
+                        Edit Note
+                        </button></Link></span>
                     <h2>
-                      {appointment.dateScheduled} with {appointment.doctorName}
+                    {appointment.dateScheduled} with {appointment.doctorName} 
+
                     </h2>
                     <h5>Time scheduled: {appointment.timeScheduled}</h5>
                     <h5>Notes for doctor: {appointment.doctorNotes}</h5>
                     <button className="btn mt-3">
                       Add to Google Calendar
                     </button>
+                    </div>
                   </div>
                 </div>
               ))}

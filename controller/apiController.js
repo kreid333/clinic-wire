@@ -149,5 +149,24 @@ router.get("/api/users", (req, res) => {
       }
     });
 });
+//UPDATE 
+router.put("/api/appointments", (req, res) => {
+  db.Appointment.update(req.body,
+    {
+      where: {
+        id: req.body.id
+      }
+    })
+    .then((response) => {
+      res.json(response);
+    })
+    .catch((err) => {
+      if (err) {
+        throw err;
+      }
+    });
+});
+
+
 
 module.exports = router;
