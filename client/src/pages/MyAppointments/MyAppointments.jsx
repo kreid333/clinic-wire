@@ -62,6 +62,16 @@ const MyAppointments = () => {
         });
     });
   };
+
+  const handleDelete = (e) => {
+    axios.delete(`/api/appointment/${e.target.id}`)
+      .then((response) => {
+        console.log("Successfully deleted!");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const [userApts, setUserApts] = useState([]);
   const jwt = require("jsonwebtoken");
 
@@ -94,28 +104,44 @@ const MyAppointments = () => {
             <div className="col-sm-12 mt-3 text-center">
               <div className="card">
                 <div className="card-body">
-                  {userApts.length === 0 && <h2>No appointments scheduled yet!</h2>}
+                  {userApts.length === 0 && (
+                    <h2>No appointments scheduled yet!</h2>
+                  )}
                   {userApts.map((appointment) => (
                     <div className="card mb-3">
                       <div className="card-body text-center">
-                        <h2>
-                          {appointment.dateScheduled} with{" "}
-                          {appointment.doctorName}
-                        </h2>
-                        <h5>Time scheduled: {appointment.timeScheduled}</h5>
-                        <h5>Notes for doctor: {appointment.doctorNotes}</h5>
-                        <button
-                          className="btn mt-3"
-                          onClick={() => {
-                            handleClick(
-                              appointment.doctorName,
-                              appointment.dateScheduled,
-                              appointment.timeScheduled
-                            );
-                          }}
-                        >
-                          Add to Google Calendar
-                        </button>
+                        <div className="row">
+                          <div className="col-sm-2"></div>
+                          <div className="col-sm-8">
+                            <h2>
+                              {appointment.dateScheduled} with{" "}
+                              {appointment.doctorName}
+                            </h2>
+                            <h5>Time scheduled: {appointment.timeScheduled}</h5>
+                            <h5>Notes for doctor: {appointment.doctorNotes}</h5>
+                            <button
+                              className="btn mt-3"
+                              onClick={() => {
+                                handleClick(
+                                  appointment.doctorName,
+                                  appointment.dateScheduled,
+                                  appointment.timeScheduled
+                                );
+                              }}
+                            >
+                              Add to Google Calendar
+                            </button>
+                          </div>
+                          <div className="col-sm-2">
+                            <button
+                              id={appointment._id}
+                              className="btn delete float-right"
+                              onClick={handleDelete}
+                            >
+                              DELETE
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   ))}

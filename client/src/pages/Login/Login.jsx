@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import { useHistory } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
 
 const Login = () => {
+  const [show, setShow] = useState(false);
   const history = useHistory();
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
@@ -17,12 +19,17 @@ const Login = () => {
         history.push("/dashboard");
       })
       .catch((err) => {
+        setShow(true)
         console.log(err);
-        alert("Unable to sign in. Make sure that the username and password are correct.")
       });
   };
   return (
     <div id="loginCenter">
+      {show === true && (
+        <Alert show={show} variant="danger">
+          Incorrect Username or Password
+        </Alert>
+      )}
       <h1 className="text-center mt-3">Login</h1>
       <div className="text-center">
         <form onSubmit={handleSubmit}>
