@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./SignUp.css";
 import { useHistory } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
 
 const SignUp = () => {
   const history = useHistory();
@@ -12,6 +13,8 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [age, setAge] = useState("");
   const [clinic, setClinic] = useState("");
+  const [show, setShow] = useState(false);
+  const [message, setMessage] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,24 +23,44 @@ const SignUp = () => {
       .then((foundClinic) => {
         console.log(foundClinic);
         axios
-          .post("/api/users", { clinic, gender, fullName, emailAddress, password, age })
+          .post("/api/users", {
+            clinic,
+            gender,
+            fullName,
+            emailAddress,
+            password,
+            age,
+          })
           .then((response) => {
             localStorage.setItem("jwt", response.data.data);
             history.push("/dashboard");
           })
           .catch((err) => {
-            alert("Email address in use.");
+            setMessage("Email address in use.");
+            setShow(true);
+            setTimeout(() => {
+              setShow(false);
+            }, 3000);
             console.log(err);
           });
       })
       .catch((err) => {
-        alert("Invalid Clinic ID.");
+        setMessage("Invalid Clinic ID.");
+        setShow(true);
+        setTimeout(() => {
+          setShow(false);
+        }, 3000);
         console.log(err);
       });
   };
 
   return (
     <div className="container">
+      {show === true && (
+        <Alert show={show} variant="danger" className="text-center">
+          {message}
+        </Alert>
+      )}
       <div className="row">
         <div className="col-sm-12">
           <h1 className="text-center mt-3">Sign Up for an Account</h1>

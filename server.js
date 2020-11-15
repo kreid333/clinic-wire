@@ -16,11 +16,15 @@ app.use(express.json());
 app.use(express.static("client/build"));
 
 // CONNECTING TO MONGOOSE
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/clinicWireDB", {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/clinicWireDB",
+  {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  }
+);
 
 // CONFIRMING MONGOOSE CONNECTION
 const connection = mongoose.connection;
@@ -51,6 +55,6 @@ app.listen(PORT, () => {
 });
 
 // REACT INDEX.HTML
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});

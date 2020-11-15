@@ -22,7 +22,7 @@ const Login = () => {
         setShow(true);
         setTimeout(() => {
           setShow(false);
-        }, 1500);
+        }, 3000);
         console.log(err);
       });
   };
