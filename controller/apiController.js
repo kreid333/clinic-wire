@@ -190,4 +190,28 @@ router.get("/api/users/:id", (req, res) => {
     });
 });
 
+router.delete("/api/appointment/:id", (req, res) => {
+  db.Appointment.findByIdAndDelete(req.params.id)
+    .then((response) => {
+      res.json(response);
+    })
+    .catch((err) => {
+      if (err) {
+        throw err;
+      }
+    });
+});
+
+router.put("/api/user/:id", (req, res) => {
+  db.User.findByIdAndUpdate(req.params.id, { $set: req.body })
+    .then((response) => {
+      res.json(response);
+    })
+    .catch((err) => {
+      if (err) {
+        throw err;
+      }
+    });
+});
+
 module.exports = router;

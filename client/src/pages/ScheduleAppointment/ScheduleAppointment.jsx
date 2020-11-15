@@ -72,9 +72,9 @@ const ScheduleAppointment = () => {
                   onChange={(e) => setDoctorName(e.target.value)}
                   required
                 >
-                  <option value="">Select One</option>
+                  <option >Select One</option>
                   {doctors.map((doctor) => (
-                    <option value="">{doctor}</option>
+                    <option>{doctor}</option>
                   ))}
                 </select>
                 <br />

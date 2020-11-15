@@ -39,22 +39,17 @@ const HomePage = () => {
           <div className="card">
             <div className="card-body">
               <h2 className="text-center">About Us</h2>
+              <hr />
               <p className="text-center">
-                Welcome to ClinicWire. ClinicWire is a user-friendly medical
-                portal that allows users to schedule appointments directly with
-                their doctor. We make it easy to find the dates and times that
-                work best for both you and your doctor. You can also add your
-                appointments to your Google Calendar directly from ClinicWire.
+                Welcome to ClinicWire. We are a user-friendly medical portal
+                that allows users to schedule appointments directly with their
+                doctor. We make it easy to find the dates and times that work
+                best for both you and your doctor.
               </p>
             </div>
-            <div class="card-footer">
-      <div class="nav-item">
-      <Link to="/Disclaimer">Link to Disclaimer Page</Link>
-          </div>
-
-     
-     
-    </div>
+            <div class="card-footer text-center">
+              <Link to="/disclaimer">Link to Disclaimer Page</Link>
+            </div>
           </div>
         </div>
       </div>
