@@ -19,7 +19,10 @@ const Login = () => {
         history.push("/dashboard");
       })
       .catch((err) => {
-        setShow(true)
+        setShow(true);
+        setTimeout(() => {
+          setShow(false);
+        }, 1500);
         console.log(err);
       });
   };
