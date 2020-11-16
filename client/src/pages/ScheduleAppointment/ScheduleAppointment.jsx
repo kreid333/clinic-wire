@@ -20,16 +20,16 @@ const ScheduleAppointment = () => {
   useEffect(() => {
     if (decoded) {
       setPatient(decoded.payload._id);
+      axios
+        .get(`/api/users/${decoded.payload._id}`)
+        .then((response) => {
+          setDoctors(response.data.clinic.doctors);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-    axios
-      .get(`/api/users/${decoded.payload._id}`)
-      .then((response) => {
-        setDoctors(response.data.clinic.doctors);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [decoded]);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -72,7 +72,7 @@ const ScheduleAppointment = () => {
                   onChange={(e) => setDoctorName(e.target.value)}
                   required
                 >
-                  <option >Select One</option>
+                  <option>Select One</option>
                   {doctors.map((doctor) => (
                     <option>{doctor}</option>
                   ))}
