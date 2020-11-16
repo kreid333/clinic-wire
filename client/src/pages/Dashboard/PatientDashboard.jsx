@@ -161,7 +161,7 @@ const Dashboard = () => {
                     <br />
                     <Link to="/myappointments">
                       <button class="btn button mt-3" id="AppointmentsBtn">
-                        Apppointments
+                        Appointments
                       </button>
                     </Link>
                   </div>
