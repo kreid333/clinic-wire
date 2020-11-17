@@ -89,7 +89,7 @@ const MyAppointments = () => {
           console.log(err);
         });
     }
-  }, [decoded]);
+  }, []);
 
   return (
     <div className="container">

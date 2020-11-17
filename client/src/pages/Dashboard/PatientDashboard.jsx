@@ -16,16 +16,18 @@ const Dashboard = () => {
   const emailAddress = document.getElementById("emailAddress");
 
   useEffect(() => {
-    axios
-      .get(`/api/users/${decoded.payload._id}`)
-      .then((response) => {
-        setClinicName(response.data.clinic.name);
-        setEmail(response.data.emailAddress);
-      })
-      .catch((err) => {
-        console.lof(err);
-      });
-  }, [decoded.payload._id]);
+    if (decoded) {
+      axios
+        .get(`/api/users/${decoded.payload._id}`)
+        .then((response) => {
+          setClinicName(response.data.clinic.name);
+          setEmail(response.data.emailAddress);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
   const handleLogout = () => {
     localStorage.removeItem("jwt");
     history.push("/");
