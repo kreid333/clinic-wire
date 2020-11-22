@@ -19,10 +19,13 @@ To use this application, run 'npm install' to install all of the packages listed
 
 ## Usage 
 
-The user must run 'npm start' in order to start both the express server and React simultaneously. After opening their local host in browser, they can then sign up or login; which, once completed, will take the user to the dashboard, where the main functionality of the application can be accessed.
+The user must run `npm start` in order to start both the express server and React simultaneously. A post request for `api/clinic/` must then be made to create a sample clinic for navigating the application. After creating the sample clinic, the user can then sign up for a new account or login if an account was already created. After accessing an account, the user will be taken to the dashboard, where the main functionality of the application can be accessed.
+
 
 Instead of running locally, the application can also be ran here:
  * [ClinicWire](https://clinic-wire.herokuapp.com/)
+ 
+ Sample Clinic ID for Deployed Website: `5fb0370ffbbe7a002aa85f36`
 
 ## Finished Project
 
